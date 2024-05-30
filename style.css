@@ -1,1 +1,48 @@
-
+.main{
+    display: flex;
+}
+.main__sideBar {
+    background-color: rgba(42, 45, 54, 1.00);
+    border: 15px;
+    border-color: rgba(48, 51, 60, 1.00);
+}
+.sideBar {
+}
+.sideBar__title {
+}
+.sideBar__allBoards {
+}
+.sideBar__list {
+}
+.list__board {
+}
+.list__addNewBoard {
+}
+.sideBar__footer {
+}
+.main__workWindow {
+}
+.workWindow__header {
+}
+.header__title {
+}
+.header__addTaskButton {
+}
+.header__moreActionsButton {
+}
+.workWindow__allColumns {
+}
+.allColumns__column {
+}
+.column__title {
+}
+.column__cards {
+}
+.card {
+}
+.card__title {
+}
+.card__substasks {
+}
+.allColumns__addNewColumn {
+}
