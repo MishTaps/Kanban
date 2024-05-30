@@ -4,85 +4,88 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kanban</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <script src="script.js"></script>
-    <div class="main__sideBar">
-        <div class="sideBar">
-            <div class="sideBar__title">kanban</div>
-            <div class="sideBar__allBoards">
-                <div class="sideBar__title">Все доски (3)</div>
-                <div class="sideBar__list">
-                    <div class="list__board">Доска №1</div>
-                    <div class="list__board">Доска №2</div>
-                    <div class="list__board">Доска №3</div>
-                    <div class="list__addNewBoard">+ Новая доска</div>
+    <div class="main">
+        <div class="main__sideBar">
+            <div class="sideBar">
+                <div class="sideBar__title">kanban</div>
+                <div class="sideBar__allBoards">
+                    <div class="sideBar__title">Все доски (3)</div>
+                    <div class="sideBar__list">
+                        <div class="list__board">Доска №1</div>
+                        <div class="list__board">Доска №2</div>
+                        <div class="list__board">Доска №3</div>
+                        <div class="list__addNewBoard">+ Новая доска</div>
+                    </div>
+                    <div class="sideBar__footer">Спрятать список досок</div>
                 </div>
-                <div class="sideBar__footer">Спрятать список досок</div>
             </div>
-        </div>
-        <div class="main__workWindow">
-            <div class="workWindow__header">
-                <div class="header__title">Доска №1</div>
-                <div class="header__addTaskButton">+ Новая задача</div>
-                <div class="header__moreActionsButton"></div>
-            </div>
-            <div class="workWindow__allColumns">
-                <div class="allColumns__column">
-                    <div class="column__title">Сделать</div>
-                    <div class="column__cards">
-                        <div class="card">
-                            <div class="card__title">Заголовок задачи</div>
-                            <div class="card__substasks">0 из 3 подзадач</div>
-                        </div>
-                        <div class="card">
-                            <div class="card__title">Заголовок задачи</div>
-                            <div class="card__substasks">0 из 3 подзадач</div>
-                        </div>
-                        <div class="card">
-                            <div class="card__title">Заголовок задачи</div>
-                            <div class="card__substasks">0 из 3 подзадач</div>
+            <div class="main__workWindow">
+                <div class="workWindow__header">
+                    <div class="header__title">Доска №1</div>
+                    <div class="header__addTaskButton">+ Новая задача</div>
+                    <div class="header__moreActionsButton"></div>
+                </div>
+                <div class="workWindow__allColumns">
+                    <div class="allColumns__column">
+                        <div class="column__title">Сделать</div>
+                        <div class="column__cards">
+                            <div class="card">
+                                <div class="card__title">Заголовок задачи</div>
+                                <div class="card__substasks">0 из 3 подзадач</div>
+                            </div>
+                            <div class="card">
+                                <div class="card__title">Заголовок задачи</div>
+                                <div class="card__substasks">0 из 3 подзадач</div>
+                            </div>
+                            <div class="card">
+                                <div class="card__title">Заголовок задачи</div>
+                                <div class="card__substasks">0 из 3 подзадач</div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="allColumns__column">
-                    <div class="column__title">В работе</div>
-                    <div class="column__title"></div>
-                    <div class="column__cards">
-                        <div class="card">
-                            <div class="card__title">Заголовок задачи</div>
-                            <div class="card__substasks">0 из 3 подзадач</div>
-                        </div>
-                        <div class="card">
-                            <div class="card__title">Заголовок задачи</div>
-                            <div class="card__substasks">0 из 3 подзадач</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="allColumns__column">
-                    <div class="column__title">Готово</div>
-                    <div class="column__cards">
-                        <div class="card">
-                            <div class="card__title">Заголовок задачи</div>
-                            <div class="card__substasks">0 из 3 подзадач</div>
-                        </div>
-                        <div class="card">
-                            <div class="card__title">Заголовок задачи</div>
-                            <div class="card__substasks">0 из 3 подзадач</div>
-                        </div>
-                        <div class="card">
-                            <div class="card__title">Заголовок задачи</div>
-                            <div class="card__substasks">0 из 3 подзадач</div>
-                        </div>
-                        <div class="card">
-                            <div class="card__title">Заголовок задачи</div>
-                            <div class="card__substasks">0 из 3 подзадач</div>
+                    <div class="allColumns__column">
+                        <div class="column__title">В работе</div>
+                        <div class="column__title"></div>
+                        <div class="column__cards">
+                            <div class="card">
+                                <div class="card__title">Заголовок задачи</div>
+                                <div class="card__substasks">0 из 3 подзадач</div>
+                            </div>
+                            <div class="card">
+                                <div class="card__title">Заголовок задачи</div>
+                                <div class="card__substasks">0 из 3 подзадач</div>
+                            </div>
                         </div>
                     </div>
+                    <div class="allColumns__column">
+                        <div class="column__title">Готово</div>
+                        <div class="column__cards">
+                            <div class="card">
+                                <div class="card__title">Заголовок задачи</div>
+                                <div class="card__substasks">0 из 3 подзадач</div>
+                            </div>
+                            <div class="card">
+                                <div class="card__title">Заголовок задачи</div>
+                                <div class="card__substasks">0 из 3 подзадач</div>
+                            </div>
+                            <div class="card">
+                                <div class="card__title">Заголовок задачи</div>
+                                <div class="card__substasks">0 из 3 подзадач</div>
+                            </div>
+                            <div class="card">
+                                <div class="card__title">Заголовок задачи</div>
+                                <div class="card__substasks">0 из 3 подзадач</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="allColumns__addNewColumn">+ Новая колонка</div>
                 </div>
-                <div class="allColumns__addNewColumn">+ Новая колонка</div>
             </div>
-        </div>
+        </div>    
     </div>
 </body>
 </html>
