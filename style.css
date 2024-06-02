@@ -13,7 +13,7 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-    max-width: 200px;
+    width: 236px;
 }
 .sideBar__logo {
     padding: 20px 0 0 0;
@@ -22,6 +22,8 @@
 }
 .sideBar__title {
     padding: 0 0 20px 0;
+    font-weight: bold;
+    color: rgb(156, 159, 163);
 }
 .sideBar__allBoards {
     margin: 40px 0 0 0;
@@ -31,11 +33,26 @@
 }
 .list__board {
     padding: 10px 0;
+    font-weight: bold;
+    color: rgb(156, 159, 163);
+}
+.list__board_selected {
+    background-color: rgba(97, 92, 194, 1.00);
+    border: rgba(97, 92, 194, 1.00);
+    border-radius: 0 1000px 1000px 0;
+    font-weight: bold;
+    color: white;
+    padding: 10px 24px 10px 31px;
+    margin: 0 20px 0 -30px;
 }
 .list__addNewBoard {
     padding: 10px 0;
+    font-weight: bold;
+    color: rgba(97, 92, 194, 1.00);
 }
 .sideBar__footer {
+    font-weight: bold;
+    color: rgb(156, 159, 163);
 }
 .main__workWindow {
     flex: 1 0 auto;
@@ -67,16 +84,24 @@
 }
 .workWindow__allColumns {
     display: flex;
+    justify-content: space-between;
     background-color: rgba(31, 34, 43, 1.00);
-    padding: 10px;
+    padding: 0px 24px;
 }
 .allColumns__column {
 }
 .column__title {
+    font-weight: bold;
+    color: rgb(156, 159, 163);
+    background-color: rgba(31, 34, 43, 1.00);
+    padding: 20px 0;
 }
 .column__cards {
+    background-color: rgba(31, 34, 43, 1.00);
 }
 .card {
+    width: 246px;
+    margin: 0 0 30px 0;
 }
 .card__title {
 }
