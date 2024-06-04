@@ -53,25 +53,23 @@
 .sideBar__footer {
     font-weight: bold;
     color: rgb(156, 159, 163);
+    padding: 0 0 24px 0;
 }
 .main__workWindow {
     flex: 1 0 auto;
 }
 .workWindow__header {
     display: flex;
-    height: 50px;
+    align-items: center;
     padding: 0 20px;
-    height: 100px;
-    max-height: 100px;
+    height: 14%;
 }
 .header__title {
     font-size: 32px;
     flex: 1 0 auto;
     font-weight: bold;
-    padding: 24px 0 0 0;
 }
 .header__addTaskButton {
-    padding: 24px 0 0 0;
 }
 .addTaskButton {
     background-color: rgba(97, 92, 194, 1.00);
@@ -83,12 +81,15 @@
     text-align: center;
 }
 .workWindow__allColumns {
+    height: 86%;
     display: flex;
     justify-content: space-between;
     background-color: rgba(31, 34, 43, 1.00);
-    padding: 0px 24px;
 }
 .allColumns__column {
+    width: 100%;
+    padding: 0 0 10px 20px;
+    background-color: rgba(31, 34, 43, 1.00);
 }
 .column__title {
     font-weight: bold;
@@ -97,15 +98,29 @@
     padding: 20px 0;
 }
 .column__cards {
+    width: 100%;
     background-color: rgba(31, 34, 43, 1.00);
 }
 .card {
-    width: 246px;
     margin: 0 0 30px 0;
+    padding: 16px;
+    border-radius: 8px;
 }
 .card__title {
+    font-weight: bold;
 }
 .card__substasks {
+    font-weight: bold;
+    color: rgb(156, 159, 163);
 }
 .allColumns__addNewColumn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 90%;
+    font-weight: bold;
+    color: rgb(198, 201, 206);
+    margin: 58px 10px 0 0;
+    border-radius: 8px;
+    background-color: rgba(34, 37, 46, 1.00);
 }
