@@ -1,10 +1,15 @@
 * {
-    background-color: rgba(42, 45, 54, 1.00);
+    --bg-dark-grey: rgba(31, 34, 43, 1.00);
+    --bg-light-grey: rgba(42, 45, 54, 1.00);
+    --bg-hover: rgb(82, 86, 98);
   }
 .main{
     color: white;
     display: flex;
     height: 100vh;
+}
+.main__sideBar {
+    background-color: var(--bg-light-grey);
 }
 .sideBar {
     padding: 0 0 0 30px;
@@ -32,6 +37,15 @@
     font-weight: bold;
     color: rgb(156, 159, 163);
 }
+.list__board:hover {
+    background-color: var(--bg-hover);
+    border: rgba(97, 92, 194, 1.00);
+    border-radius: 0 1000px 1000px 0;
+    font-weight: bold;
+    color: white;
+    padding: 10px 24px 10px 31px;
+    margin: 0 20px 0 -30px;
+}
 .list__board_selected {
     background-color: rgba(97, 92, 194, 1.00);
     border: rgba(97, 92, 194, 1.00);
@@ -46,19 +60,39 @@
     font-weight: bold;
     color: rgba(97, 92, 194, 1.00);
 }
+.list__addNewBoard:hover {
+    background-color: rgba(97, 92, 194, 1.00);
+    border: rgba(97, 92, 194, 1.00);
+    border-radius: 0 1000px 1000px 0;
+    font-weight: bold;
+    color: white;
+    padding: 10px 0px 10px 31px;
+    margin: 0 20px 0 -30px;
+}
 .sideBar__footer {
     font-weight: bold;
     color: rgb(156, 159, 163);
-    padding: 0 0 24px 0;
+    margin: 0 38px 24px 0;
+    border: rgba(97, 92, 194, 1.00);
+    border-radius: 1000px;
+    padding: 14px;
+    text-align: center;
+}
+.sideBar__footer:hover {
+    background-color: var(--bg-hover);
 }
 .main__workWindow {
     flex: 1 0 auto;
 }
 .workWindow__header {
+    background-color: var(--bg-light-grey);
+    position: sticky;
+    top: 0;
+    z-index: 1;
     display: flex;
     align-items: center;
     padding: 0 20px;
-    height: 14%;
+    height: 15vh;
 }
 .header__title {
     font-size: 32px;
@@ -74,31 +108,64 @@
     padding: 14px 24px;
     text-align: center;
 }
+.addTaskButton:hover {
+    background-color: rgb(114, 109, 198);
+}
 .workWindow__allColumns {
-    height: 86%;
+    height: 85vh;
     display: flex;
     justify-content: space-between;
-    background-color: rgba(31, 34, 43, 1.00);
+    background-color: var(--bg-dark-grey);
 }
 .allColumns__column {
     width: 100%;
     padding: 0 0 10px 20px;
-    background-color: rgba(31, 34, 43, 1.00);
+    background-color: var(--bg-dark-grey);
 }
 .column__title {
+    display: flex;
+    align-items: center;
+    background-color: var(--bg-dark-grey);
+    padding: 20px 0;
+}
+.column__circle_blue {
+    background-color: rgba(54, 180, 216, 1.00);
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    margin: 0 10px 0 0;
+}
+.column__circle_purple {
+    background-color: rgba(125, 106, 247, 1.00);
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    margin: 0 10px 0 0;
+}
+.column__circle_green {
+    background-color: rgba(115, 222, 182, 1.00);
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    margin: 0 10px 0 0;
+}
+.column__titleText {
     font-weight: bold;
     color: rgb(156, 159, 163);
-    background-color: rgba(31, 34, 43, 1.00);
-    padding: 20px 0;
+    background-color: var(--bg-dark-grey);
 }
 .column__cards {
     width: 100%;
-    background-color: rgba(31, 34, 43, 1.00);
+    background-color: var(--bg-dark-grey);
 }
 .card {
     margin: 0 0 30px 0;
     padding: 16px;
     border-radius: 8px;
+    background-color: var(--bg-light-grey);
+}
+.card:hover {
+    background-color: var(--bg-hover)
 }
 .card__title {
     font-weight: bold;
@@ -111,10 +178,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 90%;
+    height: 86%;
     font-weight: bold;
     color: rgb(198, 201, 206);
     margin: 58px 10px 0 0;
     border-radius: 8px;
     background-color: rgba(34, 37, 46, 1.00);
+}
+.allColumns__addNewColumn:hover {
+    background-color: var(--bg-hover);
 }

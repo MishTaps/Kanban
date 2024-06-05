@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kanban</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/normalize.css">
 </head>
 <body>
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
     <div class="main">
         <div class="main__sideBar">
             <div class="sideBar">
@@ -34,7 +34,10 @@
             </div>
             <div class="workWindow__allColumns">
                 <div class="allColumns__column">
-                    <div class="column__title">Сделать (3)</div>
+                    <div class="column__title">
+                        <div class="column__circle_blue"></div>
+                        <div class="column__titleText">Сделать (3)</div>
+                    </div>
                     <div class="column__cards">
                         <div class="card">
                             <div class="card__title">Заголовок задачи</div>
@@ -51,7 +54,10 @@
                     </div>
                 </div>
                 <div class="allColumns__column">
-                    <div class="column__title">В работе (2)</div>
+                    <div class="column__title">
+                        <div class="column__circle_purple"></div>
+                        <div class="column__titleText">В работе (2)</div>
+                    </div>
                     <div class="column__cards">
                         <div class="card">
                             <div class="card__title">Заголовок задачи</div>
@@ -64,7 +70,10 @@
                     </div>
                 </div>
                 <div class="allColumns__column">
-                    <div class="column__title">Готово (4)</div>
+                    <div class="column__title">
+                        <div class="column__circle_green"></div>
+                        <div class="column__titleText">Готово (4)</div>
+                    </div>
                     <div class="column__cards">
                         <div class="card">
                             <div class="card__title">Заголовок задачи</div>
