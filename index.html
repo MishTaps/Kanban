@@ -1,47 +1,46 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kanban</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/normalize.css">
-</head>
-<body>
-    <div class="main">
-        <div class="main__sideBar">
-            <div class="sideBar display-flex">
-                <div class="sideBar__logo">kanban</div>
-                <div class="sideBar__allBoards">
-                    <div class="sideBar__title">Все доски<span class="sideBar__title_countBoards"></span></div>
-                    <div class="sideBar__list">
-                        <div class="list__board list__board_selected"></div>
-                        <div class="list__board">Доска №2</div>
-                        <div class="list__board">Доска №3</div>
-                        <div class="list__addNewBoard">+ Новая доска</div>
-                    </div>
-                </div>
-                <div class="sideBar__footer">Спрятать список досок</div>
-            </div>
-        </div> 
-        <div class="main__workWindow">
-            <div class="workWindow__header">
-                <div class="header__title">Доска №1</div>
-                <div class="header__addTaskButton">
-                    <button type="button" class="addTaskButton">+ Новая задача</button>
-                </div>
-            </div>
-            <div class="workWindow__allColumns">
-                
-                <div class="allColumns__addNewColumn_container">
-                    <div class="allColumns__addNewColumn">+ Новая колонка</div>
-                </div>
-            </div>
-            <div class="hidedSideBar display-none">
-                <div class="reserSideBar">👀</div>
-            </div>
-        </div>   
-    </div>
-    <script src="js/script.js"></script>
-</body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Kanban</title>
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="css/normalize.css" />
+		<script defer src="js/script.js"></script>
+	</head>
+	<body>
+		<div class="main">
+			<aside class="main__sideBar">
+				<div class="sideBar display-flex">
+					<div class="sideBar__logo">kanban</div>
+					<div class="sideBar__allBoards">
+						<div class="sideBar__title">Все доски<span class="sideBar__title_countBoards"></span></div>
+						<div class="sideBar__list">
+							<div class="list__board list__board_selected"></div>
+							<div class="list__board">Доска №2</div>
+							<div class="list__board">Доска №3</div>
+							<div class="list__addNewBoard">+ Новая доска</div>
+						</div>
+					</div>
+					<div class="sideBar__footer">Спрятать список досок</div>
+				</div>
+			</aside>
+			<div class="main__workWindow">
+				<header class="workWindow__header">
+					<div class="header__title"></div>
+					<div class="header__addTaskButton">
+						<button type="button" class="addTaskButton">+ Новая задача</button>
+					</div>
+				</header>
+				<div class="workWindow__allColumns">
+					<section class="allColumns__addNewColumn_container">
+						<div class="allColumns__addNewColumn">+ Новая колонка</div>
+					</section>
+				</div>
+				<div class="hidedSideBar display-none">
+					<div class="reserSideBar">👀</div>
+				</div>
+			</div>
+		</div>
+	</body>
 </html>
