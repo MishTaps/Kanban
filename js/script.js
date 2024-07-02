@@ -1,18 +1,8 @@
 'use strict';
-// Константы
-const MAX_BOARD_NAME_LENGTH = 22;
 // Переменные
 let dragged = null;
-let boardsNames = [];
 let deskData = null;
 
-// Запись списка названий досок в переменную boardsNames[]
-function whiteBoardNames() {
-	const listElemBoards = document.querySelectorAll('.list__board');
-	for (let boardIndex = 0; boardIndex < listElemBoards.length; boardIndex++) {
-		boardsNames[boardIndex] = listElemBoards[boardIndex].textContent;
-	}
-}
 // Показать/скрыть боковую панель
 const elemSideBar = document.querySelector('.sideBar');
 function toggleSideBar() {
@@ -20,25 +10,21 @@ function toggleSideBar() {
 
 	elemHidedSideBar.classList.toggle('display-none');
 	elemHidedSideBar.classList.toggle('display-block');
-	return;
 }
 // Добавить новый столбец
 function addNewColumn() {
 	const elemAddNewColumn = document.querySelector('.allColumns__addNewColumn_container');
-	elemAddNewColumn.insertAdjacentHTML(
-		'beforebegin',
-		'<section class="allColumns__column"> <div class="column__title"> <div class="column__circle column__circle--green"></div> <div class="column__titleText">Новая<span class="column__titleText_countCards"></span></div> </div> <div class="column__cards"></div> </section>',
-	);
+	const columnHTMLText =
+		'<section class="allColumns__column"> <div class="column__title"> <div class="column__circle column__circle--green"></div> <div class="column__titleText">Новая<span class="column__titleText_countCards"></span></div> </div> <div class="column__cards"></div> </section>';
+	elemAddNewColumn.insertAdjacentHTML('beforebegin', columnHTMLText);
 	countAllCards();
-	return;
 }
 // Добавить новую карточку
 function addNewCard() {
 	const elemColumnСards = document.querySelector('.column__cards');
-	elemColumnСards.insertAdjacentHTML(
-		'afterbegin',
-		'<article class="card" draggable="true"> <div class="card__title">Новая задача</div> <div class="card__substasks">0 из 0 подзадач</div> </article>',
-	);
+	const cardHTMLText =
+		'<article class="card" draggable="true"> <div class="card__title">Новая задача</div> <div class="card__substasks">0 из 0 подзадач</div> </article>';
+	elemColumnСards.insertAdjacentHTML('afterbegin', cardHTMLText);
 	countAllCards();
 }
 // Добавить новые столбцы после загрузки доски
@@ -46,10 +32,8 @@ function addNewColumnsAfterFetch(boardData) {
 	const boardColumns = boardData.columns;
 	boardColumns.forEach((column) => {
 		const elemAddNewColumn = document.querySelector('.allColumns__addNewColumn_container');
-		elemAddNewColumn.insertAdjacentHTML(
-			'beforebegin',
-			`<section class="allColumns__column"> <div class="column__title"> <div class="column__circle column__circle--${column.color}"></div> <div class="column__titleText">${column.name}<span class="column__titleText_countCards"></span></div> </div> <div class="column__cards"></div> </section>`,
-		);
+		const columnHTMLText = `<section class="allColumns__column"> <div class="column__title"> <div class="column__circle column__circle--${column.color}"></div> <div class="column__titleText">${column.name}<span class="column__titleText_countCards"></span></div> </div> <div class="column__cards"></div> </section>`;
+		elemAddNewColumn.insertAdjacentHTML('beforebegin', columnHTMLText);
 		addNewCardAfterFetch(column);
 	});
 	countAllCards();
@@ -68,10 +52,8 @@ function addNewCardAfterFetch(columnData) {
 			}
 		});
 		const elemColumnСards = document.querySelectorAll('.column__cards')[columnData.id];
-		elemColumnСards.insertAdjacentHTML(
-			'beforeend',
-			`<article class="card" draggable="true"> <div class="card__title">${card.name}</div> <div class="card__substasks">${subtasksDoneCount} из ${subtasksAllCount} подзадач</div> </article>`,
-		);
+		const cardHTMLText = `<article class="card" draggable="true"> <div class="card__title">${card.name}</div> <div class="card__substasks">${subtasksDoneCount} из ${subtasksAllCount} подзадач</div> </article>`;
+		elemColumnСards.insertAdjacentHTML('beforeend', cardHTMLText);
 	});
 }
 // Записать название доски после загрузки доски
@@ -93,12 +75,9 @@ function showError(err) {
 // Добавить новую доску
 function addNewBoard() {
 	const elemAddNewBoard = document.querySelector('.list__addNewBoard');
-	elemAddNewBoard.insertAdjacentHTML(
-		'beforebegin',
-		'<div class="list__board">Новая доска с очень длинным названием, которая не помещается</div>',
-	);
+	const boardHTMLText = '<div class="list__board">Новая доска с очень длинным названием, которая не помещается</div>';
+	elemAddNewBoard.insertAdjacentHTML('beforebegin', boardHTMLText);
 	countAllBoards();
-	editBoardNames();
 }
 // Подсчёт карточек
 function countAllCards() {
@@ -108,44 +87,26 @@ function countAllCards() {
 		let countCards = listElemColumnTitleText[columnIndex].parentElement.nextElementSibling.childElementCount;
 		listElemCountCards[columnIndex].textContent = ` (${countCards})`;
 	}
-	return;
 }
 // Подсчёт досок
 function countAllBoards() {
 	const listElemBoards = document.querySelectorAll('.list__board');
 	const elemCountBoards = document.querySelector('.sideBar__title_countBoards');
 	elemCountBoards.textContent = ` (${listElemBoards.length})`;
-	return;
-}
-// Проверка на длину названия доски
-function editBoardNames() {
-	const listElemBoard = document.querySelectorAll('.list__board');
-	for (let boardIndex = 0; boardIndex < listElemBoard.length; boardIndex++) {
-		let boardNameLength = listElemBoard[boardIndex].textContent.length;
-		if (boardNameLength > MAX_BOARD_NAME_LENGTH) {
-			const fullBoardName = listElemBoard[boardIndex].textContent;
-			const shortBoardName = fullBoardName.substring(0, MAX_BOARD_NAME_LENGTH) + '...';
-			listElemBoard[boardIndex].textContent = shortBoardName;
-		}
-	}
-	return;
 }
 // Начало перетаскивания карточки
 function dragCardStart(event) {
 	dragged = event.target;
-	return;
 }
 // Красить столбец при "dragover"
 function dragOverColumn(event) {
 	event.preventDefault();
 	event.target.classList.add('column__cards_dragOver');
-	return;
 }
 // Красить столбец при "dragleave"
 function dragLeaveColumn(event) {
 	event.preventDefault();
 	event.target.classList.remove('column__cards_dragOver');
-	return;
 }
 // Красить столбец и добавлять карточку в столбец при "drop"
 function dragOnColumn(event) {
@@ -156,7 +117,6 @@ function dragOnColumn(event) {
 		event.target.appendChild(dragged);
 		countAllCards();
 	}
-	return;
 }
 // Проверить, что событие "dragstart" срабатывает на карточку
 function checkCardElement(event) {
@@ -164,30 +124,33 @@ function checkCardElement(event) {
 		return;
 	}
 	dragCardStart(event);
-	return;
 }
 // Проверить, что событие "dragover" срабатывает на столбец
 function checkColumnElementForDragOver(event) {
-	if (!event.target.classList.contains('column__cards')) return;
+	if (!event.target.classList.contains('column__cards')) {
+		return;
+	}
 	dragOverColumn(event);
-	return;
 }
 // Проверить, что событие "dragleave" срабатывает на столбец
 function checkColumnElementForDragLeave(event) {
-	if (!event.target.classList.contains('column__cards')) return;
+	if (!event.target.classList.contains('column__cards')) {
+		return;
+	}
 	dragLeaveColumn(event);
-	return;
 }
 // Проверить, что событие "drop" срабатывает на столбец
 function checkColumnElementForDrop(event) {
-	if (!event.target.classList.contains('column__cards')) return;
+	if (!event.target.classList.contains('column__cards')) {
+		return;
+	}
 	dragOnColumn(event);
-	return;
 }
 // Проверить, что событие "mouseover" срабатывает на доску
 function checkElemBoard(event) {
-	if (!event.target.classList.contains('list__board')) return;
-	return;
+	if (!event.target.classList.contains('list__board')) {
+		return;
+	}
 }
 
 // Событие "Скрыть боковую панель"
@@ -228,5 +191,3 @@ fetch('../db/board0.json')
 	.catch((err) => showError(err));
 
 countAllBoards(); // Посчитать доски
-whiteBoardNames(); // Записать полные имена досок в массив boardsNames[]
-editBoardNames(); // Укоротить слишком длинные названия досок

@@ -52,10 +52,14 @@
   flex: 1 0 auto;
 }
 .list__board {
+  margin: 0 20px 0 0;
   padding: 10px 0;
   font-weight: bold;
   color: rgb(156, 159, 163);
   cursor: pointer;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .list__board:hover {
   background-color: var(--bg-hover);
@@ -71,7 +75,7 @@
   border: rgba(97, 92, 194, 1);
   border-radius: 0 1000px 1000px 0;
   color: white;
-  padding: 10px 24px 10px 31px;
+  padding: 10px 24px 10px 30px;
   margin: 0 20px 0 -30px;
 }
 .list__addNewBoard {
@@ -86,7 +90,7 @@
   border-radius: 0 1000px 1000px 0;
   font-weight: bold;
   color: white;
-  padding: 10px 0px 10px 31px;
+  padding: 10px 0px 10px 30px;
   margin: 0 20px 0 -30px;
 }
 .sideBar__footer {
