@@ -7,9 +7,7 @@ let deskData = null;
 const elemSideBar = document.querySelector('.sideBar');
 function toggleSideBar() {
 	elemSideBar.classList.toggle('display-none');
-
 	elemHidedSideBar.classList.toggle('display-none');
-	elemHidedSideBar.classList.toggle('display-block');
 }
 // Добавить новый столбец
 function addNewColumn() {
@@ -146,12 +144,6 @@ function checkColumnElementForDrop(event) {
 	}
 	dragOnColumn(event);
 }
-// Проверить, что событие "mouseover" срабатывает на доску
-function checkElemBoard(event) {
-	if (!event.target.classList.contains('list__board')) {
-		return;
-	}
-}
 
 // Событие "Скрыть боковую панель"
 const elemSideBarFooter = document.querySelector('.sideBar__footer');
@@ -179,10 +171,6 @@ elemAllColumns.addEventListener('dragstart', checkCardElement);
 elemAllColumns.addEventListener('dragover', checkColumnElementForDragOver);
 elemAllColumns.addEventListener('dragleave', checkColumnElementForDragLeave);
 elemAllColumns.addEventListener('drop', checkColumnElementForDrop);
-
-// События наведения/уведения мыши на/с названия доски
-const elemBoards = document.querySelector('.sideBar__list');
-elemBoards.addEventListener('mouseover', checkElemBoard);
 
 // <--- Начало обработки страницы --->
 fetch('../db/board0.json')
