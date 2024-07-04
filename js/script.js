@@ -173,7 +173,7 @@ elemAllColumns.addEventListener('dragleave', checkColumnElementForDragLeave);
 elemAllColumns.addEventListener('drop', checkColumnElementForDrop);
 
 // <--- Начало обработки страницы --->
-fetch('./Kanban/db/board0.json')
+fetch('./db/board0.json')
 	.then((response) => response.json())
 	.then((data) => showBoard(data))
 	.catch((err) => showError(err));
