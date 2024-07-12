@@ -1,13 +1,20 @@
 export const AddNewCard = ({ allBoards, selectedBoard, setAllBoards }) => {
 	const addNewCard = () => {
 		try {
+			// Так неправильно делать. Потом переделаю
+			// Начало
+			const min = Math.ceil(0);
+			const max = Math.floor(1000000);
+			const newID = Math.floor(Math.random() * (max - min) + min);
+			// Конец
+
 			const newCard = {
 				name: 'Новая задача',
-				id: selectedBoard.columns[0].cards.length,
+				id: newID,
 				subtasks: [],
 			};
 			let db_new = { ...allBoards };
-			db_new.boards[selectedBoard.id].columns[0].cards.push(newCard);
+			db_new.boards[db_new.boards.indexOf(selectedBoard)].columns[0].cards.push(newCard);
 
 			setAllBoards(db_new);
 		} catch {

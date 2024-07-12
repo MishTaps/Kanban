@@ -54,7 +54,7 @@ export const App = () => {
 					<div className="workWindow__allColumns">
 						{columnList.map((item, indexColumn) => (
 							<Column
-								key={indexColumn}
+								key={selectedBoard.columns[indexColumn].id}
 								allBoards={allBoards}
 								indexColumn={indexColumn}
 								selectedBoard={selectedBoard}

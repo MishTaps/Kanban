@@ -12,7 +12,7 @@ export const Board = ({
 	const selectBoard = () => {
 		let newBoard;
 		allBoards.boards.forEach((board) => {
-			if (board.id === indexBoard) {
+			if (board.id === allBoards.boards[indexBoard].id) {
 				newBoard = board;
 			}
 		});

@@ -41,14 +41,18 @@ export const Column = ({
 
 		let cardIndex = null;
 		let cardIndexCount = 0;
-
-		db_new.boards[selectedBoard.id].columns[draggedFromColumn.id].cards.forEach((card) => {
-			if (card.id === draggedCard.id) {
-				cardIndex = cardIndexCount;
-			}
-			cardIndexCount++;
-		});
-		db_new.boards[selectedBoard.id].columns[draggedFromColumn.id].cards.splice(cardIndex, 1);
+		db_new.boards[selectedBoard.id].columns[selectedBoard.columns.indexOf(draggedFromColumn)].cards.forEach(
+			(card) => {
+				if (card.id === draggedCard.id) {
+					cardIndex = cardIndexCount;
+				}
+				cardIndexCount++;
+			},
+		);
+		db_new.boards[selectedBoard.id].columns[selectedBoard.columns.indexOf(draggedFromColumn)].cards.splice(
+			cardIndex,
+			1,
+		);
 
 		setAllBoards(db_new);
 		setDraggedOverColumn(null);
@@ -115,7 +119,7 @@ export const Column = ({
 			>
 				{listCards.map((item, index) => (
 					<Card
-						key={index}
+						key={selectedBoard.columns[indexColumn].cards[index].id}
 						indexColumn={indexColumn}
 						allBoards={allBoards}
 						setAllBoards={setAllBoards}
