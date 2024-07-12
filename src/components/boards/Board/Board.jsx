@@ -1,6 +1,13 @@
-export const Board = ({ indexBoard, selectedBoard, allBoards, setSelectedBoard }) => {
-	const boardName = allBoards.boards[indexBoard].name;
-	const boardID = allBoards.boards[indexBoard].id;
+export const Board = ({
+	indexBoard,
+	selectedBoard,
+	allBoards,
+	setSelectedBoard,
+	setTitleText,
+	setOpenedColorSelector,
+	setOpenedCard,
+}) => {
+	const board = allBoards.boards[indexBoard];
 
 	const selectBoard = () => {
 		let newBoard;
@@ -10,15 +17,17 @@ export const Board = ({ indexBoard, selectedBoard, allBoards, setSelectedBoard }
 			}
 		});
 		selectedBoard = allBoards.boards[newBoard.id];
+		setTitleText(board.name);
 		setSelectedBoard(newBoard);
+		setOpenedColorSelector([false, null]);
+		setOpenedCard(null);
 	};
-
 	return (
 		<div
-			className={`list__board${boardID === selectedBoard.id ? ' list__board_selected' : ''}`}
+			className={'list__board' + (board.id === selectedBoard.id ? ' list__board_selected' : '')}
 			onClick={selectBoard}
 		>
-			{boardName}
+			{board.name}
 		</div>
 	);
 };

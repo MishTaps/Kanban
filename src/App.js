@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { TitleBoardName } from './components/boards/TitleBoardName';
 import { AddNewCard } from './components/cards/AddNewCard';
 import { AddNewColumn } from './components/columns/AddNewColumn';
 import { Column } from './components/columns/Column';
@@ -13,56 +14,69 @@ export const App = () => {
 	const [draggedCard, setDraggedCard] = useState(null);
 	const [draggedFromColumn, setDraggedFromColumn] = useState(null);
 	const [draggedOverColumn, setDraggedOverColumn] = useState(null);
+	const [openedCard, setOpenedCard] = useState(null);
+	const [openedColorSelector, setOpenedColorSelector] = useState([false, null]); // [<Открыт ли селектор>, <Индекс колонки>]
+	const [coordinatesColorSelector, setCoordinatesColorSelector] = useState([null, null]);
+	const [titleText, setTitleText] = useState(selectedBoard.name);
 	const columnList = Array(selectedBoard.columns.length).fill();
 
-	// console.log('------- Начало обработки -------');
-	// console.log(`allBoards:`);
-	// console.log(allBoards);
-	// console.log(`selectedBoard:`);
-	// console.log(selectedBoard);
-	// console.log(`isSideBarHidden:`);
-	// console.log(isSideBarHidden);
-	// console.log(`draggedCard:`);
-	// console.log(draggedCard);
-	// console.log(`draggedFromColumn:`);
-	// console.log(draggedFromColumn);
-	// console.log(`draggedOverColumn:`);
-	// console.log(draggedOverColumn);
+	const handleClick = (event) => {
+		if (!event.target.className.includes('column__circle')) {
+			setOpenedColorSelector([false, null]);
+		}
+	};
 
 	return (
 		<>
-			<SideBar
-				isHidden={isSideBarHidden}
-				setHidden={setSideBarHidden}
-				selectedBoard={selectedBoard}
-				allBoards={allBoards}
-				setSelectedBoard={setSelectedBoard}
-				setAllBoards={setAllBoards}
-			/>
-			<div className="main__workWindow">
-				<header className="workWindow__header">
-					<div className="header__title">{selectedBoard.name}</div>
-					<AddNewCard allBoards={allBoards} selectedBoard={selectedBoard} setAllBoards={setAllBoards} />
-				</header>
-				<div className="workWindow__allColumns">
-					{columnList.map((item, indexColumn) => (
-						<Column
-							key={indexColumn}
+			<div className="main">
+				<SideBar
+					isHidden={isSideBarHidden}
+					setHidden={setSideBarHidden}
+					selectedBoard={selectedBoard}
+					allBoards={allBoards}
+					setSelectedBoard={setSelectedBoard}
+					setAllBoards={setAllBoards}
+					setTitleText={setTitleText}
+					setOpenedColorSelector={setOpenedColorSelector}
+					setOpenedCard={setOpenedCard}
+				/>
+				<div className="main__workWindow" onClick={handleClick}>
+					<header className="workWindow__header">
+						<TitleBoardName
 							allBoards={allBoards}
-							indexColumn={indexColumn}
 							selectedBoard={selectedBoard}
 							setAllBoards={setAllBoards}
-							draggedCard={draggedCard}
-							setDraggedCard={setDraggedCard}
-							draggedFromColumn={draggedFromColumn}
-							setDraggedFromColumn={setDraggedFromColumn}
-							draggedOverColumn={draggedOverColumn}
-							setDraggedOverColumn={setDraggedOverColumn}
+							titleText={titleText}
+							setTitleText={setTitleText}
 						/>
-					))}
-					<AddNewColumn allBoards={allBoards} selectedBoard={selectedBoard} setAllBoards={setAllBoards} />
+						<AddNewCard allBoards={allBoards} selectedBoard={selectedBoard} setAllBoards={setAllBoards} />
+					</header>
+					<div className="workWindow__allColumns">
+						{columnList.map((item, indexColumn) => (
+							<Column
+								key={indexColumn}
+								allBoards={allBoards}
+								indexColumn={indexColumn}
+								selectedBoard={selectedBoard}
+								setAllBoards={setAllBoards}
+								draggedCard={draggedCard}
+								setDraggedCard={setDraggedCard}
+								draggedFromColumn={draggedFromColumn}
+								setDraggedFromColumn={setDraggedFromColumn}
+								draggedOverColumn={draggedOverColumn}
+								setDraggedOverColumn={setDraggedOverColumn}
+								openedCard={openedCard}
+								setOpenedCard={setOpenedCard}
+								coordinatesColorSelector={coordinatesColorSelector}
+								setCoordinatesColorSelector={setCoordinatesColorSelector}
+								openedColorSelector={openedColorSelector}
+								setOpenedColorSelector={setOpenedColorSelector}
+							/>
+						))}
+						<AddNewColumn allBoards={allBoards} selectedBoard={selectedBoard} setAllBoards={setAllBoards} />
+					</div>
+					<ShowSideBar isHidden={isSideBarHidden} setHidden={setSideBarHidden} />
 				</div>
-				<ShowSideBar isHidden={isSideBarHidden} setHidden={setSideBarHidden} />
 			</div>
 		</>
 	);

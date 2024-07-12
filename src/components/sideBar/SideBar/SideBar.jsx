@@ -2,7 +2,17 @@ import { AddNewBoard } from '../../boards/AddNewBoard';
 import { Board } from '../../boards/Board';
 import { HideSideBar } from '../HideSideBar';
 
-export const SideBar = ({ isHidden, setHidden, selectedBoard, allBoards, setSelectedBoard, setAllBoards }) => {
+export const SideBar = ({
+	isHidden,
+	setHidden,
+	selectedBoard,
+	allBoards,
+	setSelectedBoard,
+	setAllBoards,
+	setTitleText,
+	setOpenedColorSelector,
+	setOpenedCard,
+}) => {
 	const listBoards = Array(allBoards.boards.length).fill();
 
 	const handleClick = () => {
@@ -26,6 +36,9 @@ export const SideBar = ({ isHidden, setHidden, selectedBoard, allBoards, setSele
 									selectedBoard={selectedBoard}
 									allBoards={allBoards}
 									setSelectedBoard={setSelectedBoard}
+									setTitleText={setTitleText}
+									setOpenedColorSelector={setOpenedColorSelector}
+									setOpenedCard={setOpenedCard}
 								/>
 							))}
 

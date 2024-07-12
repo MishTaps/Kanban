@@ -6,8 +6,8 @@
       "columns": [
         {
           "name": "Сделать",
-          "id": 0,
-          "color": "blue",
+          "id": 1111111,
+          "color": "light-blue",
           "cards": [
             {
               "name": "Заголовок задачи №1",
@@ -61,7 +61,7 @@
         },
         {
           "name": "В работе",
-          "id": 1,
+          "id": 1111112,
           "color": "purple",
           "cards": [
             {
@@ -94,7 +94,7 @@
         },
         {
           "name": "Готово",
-          "id": 2,
+          "id": 1111113,
           "color": "green",
           "cards": [
             {
@@ -176,13 +176,13 @@
       "columns": [
         {
           "name": "Сделать",
-          "id": 0,
-          "color": "blue",
+          "id": 2222221,
+          "color": "light-blue",
           "cards": []
         },
         {
           "name": "Готово",
-          "id": 1,
+          "id": 2222222,
           "color": "green",
           "cards": [
             {

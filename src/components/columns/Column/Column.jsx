@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import { Card } from '../../cards/Card';
+import { ColorSelector } from '../ColorSelector';
 
 export const Column = ({
 	allBoards,
@@ -11,16 +13,21 @@ export const Column = ({
 	setDraggedFromColumn,
 	draggedOverColumn,
 	setDraggedOverColumn,
+	openedCard,
+	setOpenedCard,
+	coordinatesColorSelector,
+	setCoordinatesColorSelector,
+	openedColorSelector,
+	setOpenedColorSelector,
 }) => {
-	const columnColor = selectedBoard.columns[indexColumn].color;
-	const columnName = selectedBoard.columns[indexColumn].name;
-	const columnID = selectedBoard.columns[indexColumn].id;
-	const columnCards = selectedBoard.columns[indexColumn].cards;
-	const listCards = Array(selectedBoard.columns[indexColumn].cards.length).fill();
+	const column = selectedBoard.columns[indexColumn];
+	const listCards = Array(column.cards.length).fill();
+	const [columnName, setColumnName] = useState(column.name);
+	const [isSaved, setIsSaved] = useState(true);
 
 	const dragOverColumn = (event) => {
 		event.preventDefault();
-		setDraggedOverColumn(selectedBoard.columns[indexColumn]);
+		setDraggedOverColumn(column);
 	};
 	const dragLeaveColumn = (event) => {
 		event.preventDefault();
@@ -46,20 +53,61 @@ export const Column = ({
 		setAllBoards(db_new);
 		setDraggedOverColumn(null);
 	};
+	const showColorSelector = (event) => {
+		const correctX = 0;
+		const correctY = 20;
+		setOpenedColorSelector([true, indexColumn]);
+		setCoordinatesColorSelector([event.pageX + correctX, event.pageY + correctY]);
+	};
+	const changeColumnNameValue = (event) => {
+		setColumnName(event.target.value);
+		if (event.target.value !== column.name) {
+			setIsSaved(false);
+		} else {
+			setIsSaved(true);
+		}
+	};
+	const changeColumnName = (event) => {
+		if (event.code === 'Enter') {
+			event.target.blur();
+			setIsSaved(true);
+
+			let db_new = { ...allBoards };
+			db_new.boards[selectedBoard.id].columns[indexColumn].name = columnName;
+			setAllBoards(db_new);
+		}
+	};
 
 	return (
 		<section className="allColumns__column">
 			<div className="column__title">
-				<div className={`column__circle column__circle--${columnColor}`} />
-				<div className="column__titleText">
-					{columnName}
-					<span className="column__titleText_countCards">{` (${columnCards.length})`}</span>
+				<div className={`column__circle column__circle--${column.color}`} onClick={showColorSelector} />
+				<div className="column__titleText_container">
+					<div className="column__titleText_countCards">{`(${column.cards.length}) :`}&nbsp;</div>
+					<div className="column__titleText_input_container">
+						<input
+							className={'column__titleText_input' + (!isSaved ? ' inputWasEdited' : '')}
+							value={columnName}
+							onChange={changeColumnNameValue}
+							onKeyUp={changeColumnName}
+						></input>
+					</div>
 				</div>
+				{openedColorSelector[0] && openedColorSelector[1] === indexColumn && (
+					<ColorSelector
+						allBoards={allBoards}
+						setAllBoards={setAllBoards}
+						indexColumn={indexColumn}
+						selectedBoard={selectedBoard}
+						coordinatesColorSelector={coordinatesColorSelector}
+						setOpenedColorSelector={setOpenedColorSelector}
+					/>
+				)}
 			</div>
 			<div
 				className={
 					'column__cards' +
-					(draggedOverColumn && columnID === draggedOverColumn.id ? ' column__cards_dragOver' : '')
+					(draggedOverColumn && column.id === draggedOverColumn.id ? ' column__cards_dragOver' : '')
 				}
 				onDrop={dropCard}
 				onDragOver={dragOverColumn}
@@ -69,12 +117,16 @@ export const Column = ({
 					<Card
 						key={index}
 						indexColumn={indexColumn}
+						allBoards={allBoards}
+						setAllBoards={setAllBoards}
+						selectedBoard={selectedBoard}
 						indexCard={index}
-						boardData={selectedBoard}
 						draggedCard={draggedCard}
 						setDraggedCard={setDraggedCard}
 						draggedFromColumn={draggedFromColumn}
 						setDraggedFromColumn={setDraggedFromColumn}
+						openedCard={openedCard}
+						setOpenedCard={setOpenedCard}
 					/>
 				))}
 			</div>

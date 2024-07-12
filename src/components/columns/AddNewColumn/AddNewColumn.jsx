@@ -3,7 +3,7 @@ export const AddNewColumn = ({ allBoards, selectedBoard, setAllBoards }) => {
 		const newColumn = {
 			name: 'Новая',
 			id: selectedBoard.columns.length,
-			color: 'blue',
+			color: 'light-blue',
 			cards: [],
 		};
 		let db_new = { ...allBoards };
