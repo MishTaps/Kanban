@@ -1,3 +1,6 @@
+/* eslint-disable react/prop-types */
+import cn from 'classnames';
+import React from 'react';
 import { AddNewBoard } from '../../boards/AddNewBoard';
 import { Board } from '../../boards/Board';
 import { HideSideBar } from '../HideSideBar';
@@ -7,7 +10,7 @@ export const SideBar = ({
 	setHidden,
 	selectedBoard,
 	allBoards,
-	setSelectedBoard,
+	setSelectedBoardIndex,
 	setAllBoards,
 	setTitleText,
 	setOpenedColorSelector,
@@ -18,9 +21,10 @@ export const SideBar = ({
 	const handleClick = () => {
 		setHidden(true);
 	};
+
 	return (
 		<>
-			<aside className={'main__sideBar' + (isHidden ? ' display-none' : '')}>
+			<aside className={cn('main__sideBar', { 'display-none': isHidden })}>
 				<div className="sideBar display-flex">
 					<div className="sideBar__logo">kanban</div>
 					<div className="sideBar__allBoards">
@@ -35,18 +39,14 @@ export const SideBar = ({
 									indexBoard={index}
 									selectedBoard={selectedBoard}
 									allBoards={allBoards}
-									setSelectedBoard={setSelectedBoard}
+									setSelectedBoardIndex={setSelectedBoardIndex}
 									setTitleText={setTitleText}
 									setOpenedColorSelector={setOpenedColorSelector}
 									setOpenedCard={setOpenedCard}
 								/>
 							))}
 
-							<AddNewBoard
-								allBoards={allBoards}
-								selectedBoard={selectedBoard}
-								setAllBoards={setAllBoards}
-							/>
+							<AddNewBoard setAllBoards={setAllBoards} />
 						</div>
 					</div>
 					<HideSideBar handleClick={handleClick} />

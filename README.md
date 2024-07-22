@@ -1,70 +1,163 @@
-# Getting Started with Create React App
+# Kanban доска
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Разделы readme.md:
 
-## Available Scripts
+-   Работа с досками
+-   Работа со столбцами
+-   Работа с карточками
+-   Работа с подзадачами
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## Работа с досками
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Создание доски
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Для создание доски необходимо нажать на кнопку `+ Новая доска`. После этого будет создана доска:
 
-### `npm test`
+-   без колонок;
+-   без карточек;
+-   с названием `Новая доска`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Открытие доски
 
-### `npm run build`
+Для открытия доски необходимо нажать на её название в левом списке досок
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Переименовывание доски
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Для переименовывания доски необходимо:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Открыть доску;
+2. Нажать на название доски в шапке страницы;
+3. Ввести новое название;
+4. Нажать `enter`
 
-### `npm run eject`
+> [!WARNING]
+> Все несохранённые изменения будут обведены в оранжевую рамку.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Удаление доски
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Для удаления доски необходимо нажать на кнопку `Удалить доску` в верхнем-левом углу экрана
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Показ и скрытие списка досок
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+-   Для скрытия левого списка досок необходимо нажать на кнопку `Спрятать список досок` в левом-нижнем углу экрана;
+-   Для показа левого списка досок необходимо нажать на кнопку с символом :eyes: в левом-нижнем углу экрана.
 
-## Learn More
+### Сохранение доски на устройство
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+> [!CAUTION]
+> Ещё не реализовано.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Импорт доски с устройства
 
-### Code Splitting
+> [!CAUTION]
+> Ещё не реализовано.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
+## Работа со столбцами
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Создание столбца
 
-### Making a Progressive Web App
+Для создания столбца необходимо в открытой доске нажать на кнопку `+ Новая колонка`. После этого будет создана колонка:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+-   без карточек;
+-   с названием `Новая`;
+-   с голубым цветом
 
-### Advanced Configuration
+### Переименовывание столбца
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Для переименовывания столбца необходимо:
 
-### Deployment
+1. Нажать на название столбца;
+2. Ввести новое название;
+3. Нажать `enter`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+> [!WARNING]
+> Все несохранённые изменения будут обведены в оранжевую рамку.
 
-### `npm run build` fails to minify
+### Изменение цвета столбца
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Для изменения цвета столбца необходимо нажать на кружок цвета столбца и выбрать один из предложенных цветов.
+
+### Перемещение столбца
+
+> [!CAUTION]
+> Ещё не реализовано.
+
+### Удаление столбца
+
+Для удаления столбца необходимо переместить столбец в область с корзиной с помощью drag'n'drop (перетаскиванием мыши)
+
+---
+
+## Работа с карточками
+
+### Создание карточки
+
+Для создания карточки необходимо в открытой доске нажать на кнопку `+ Новая задача`. После этого будет создана карточка:
+
+-   с названием `Новая задача`;
+-   без подзадач;
+-   в первом столбце доски
+
+> [!WARNING]
+> Задачу нельзя создать, если на доске нет ни одного столбца.
+
+### Переименовывание карточки
+
+Для переименовывания карточки необходимо:
+
+1. Нажать на название карточки;
+2. Ввести новое название;
+3. Нажать `enter`
+
+> [!WARNING]
+> Все несохранённые изменения будут обведены в оранжевую рамку.
+
+### Перемещение карточки
+
+Переместить карточку на другой столбец можно с помощью drag'n'drop (перетаскиванием мыши)
+
+### Удаление карточки
+
+Для удаления карточки необходимо переместить карточку в область с корзиной с помощью drag'n'drop (перетаскиванием мыши)
+
+---
+
+## Работа с подзадачами
+
+### Создание подзадачи
+
+Для создания подзадачи необходимо в открытой карточке нажать на кнопку `+ Новая подзадача`. После этого будет создана подзадача:
+
+-   с названием `Новая подзадача`;
+-   в самом низу списка подзадач карточки.
+
+### Переименовывание подзадачи
+
+Для переименовывания подзадачи необходимо:
+
+1. Нажать на название подзадачи;
+2. Ввести новое название;
+3. Нажать `enter`
+
+> [!WARNING]
+> Все несохранённые изменения будут обведены в оранжевую рамку.
+
+### Изменение статуса подзадачи
+
+Для изменения статуса подзадачи необходимо нажать на чекбокс слева от названия подзадачи.
+
+-   Если подзадача выполнена, то стоит галочка;
+-   Если подзадача не выполнена, то галочка отсутствует;
+
+### Перемещение подзадачи
+
+> [!CAUTION]
+> Ещё не реализовано.
+
+### Удаление подзадачи
+
+Для удаления карточки необходимо нажать на значок корзины справа от названия подзадачи.

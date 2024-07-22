@@ -1,4 +1,6 @@
-import { useState } from 'react';
+/* eslint-disable react/prop-types */
+import cn from 'classnames';
+import React, { useState } from 'react';
 import { Card } from '../../cards/Card';
 import { ColorSelector } from '../ColorSelector';
 
@@ -13,6 +15,7 @@ export const Column = ({
 	setDraggedFromColumn,
 	draggedOverColumn,
 	setDraggedOverColumn,
+	setDraggedColumn,
 	openedCard,
 	setOpenedCard,
 	coordinatesColorSelector,
@@ -26,42 +29,50 @@ export const Column = ({
 	const [isSaved, setIsSaved] = useState(true);
 
 	const dragOverColumn = (event) => {
-		event.preventDefault();
-		setDraggedOverColumn(column);
+		if (draggedCard) {
+			event.preventDefault();
+			setDraggedOverColumn(column);
+		}
 	};
 	const dragLeaveColumn = (event) => {
-		event.preventDefault();
-		setDraggedOverColumn(null);
+		if (draggedCard) {
+			event.preventDefault();
+			setDraggedOverColumn(null);
+		}
 	};
 	const dropCard = (event) => {
 		event.preventDefault();
 
-		let db_new = { ...allBoards };
-		db_new.boards[selectedBoard.id].columns[indexColumn].cards.push(draggedCard);
-
 		let cardIndex = null;
 		let cardIndexCount = 0;
-		db_new.boards[selectedBoard.id].columns[selectedBoard.columns.indexOf(draggedFromColumn)].cards.forEach(
-			(card) => {
-				if (card.id === draggedCard.id) {
-					cardIndex = cardIndexCount;
-				}
-				cardIndexCount++;
-			},
-		);
-		db_new.boards[selectedBoard.id].columns[selectedBoard.columns.indexOf(draggedFromColumn)].cards.splice(
-			cardIndex,
-			1,
-		);
+		allBoards.boards[allBoards.boards.indexOf(selectedBoard)].columns[
+			selectedBoard.columns.indexOf(draggedFromColumn)
+		].cards.forEach((card) => {
+			if (card.id === draggedCard.id) {
+				cardIndex = cardIndexCount;
+			}
+			cardIndexCount++;
+		});
 
-		setAllBoards(db_new);
+		setAllBoards((draft) => {
+			draft.boards[allBoards.boards.indexOf(selectedBoard)].columns[indexColumn].cards.push(draggedCard);
+
+			draft.boards[allBoards.boards.indexOf(selectedBoard)].columns[
+				selectedBoard.columns.indexOf(draggedFromColumn)
+			].cards.splice(cardIndex, 1);
+		});
 		setDraggedOverColumn(null);
+		setDraggedCard(null);
+		setDraggedFromColumn(null);
 	};
 	const showColorSelector = (event) => {
 		const correctX = 0;
 		const correctY = 20;
-		setOpenedColorSelector([true, indexColumn]);
-		setCoordinatesColorSelector([event.pageX + correctX, event.pageY + correctY]);
+		let coordinates_new = { ...coordinatesColorSelector };
+		coordinates_new.x = event.pageX + correctX;
+		coordinates_new.y = event.pageY + correctY;
+		setOpenedColorSelector({ isOpened: true, columnIndex: indexColumn });
+		setCoordinatesColorSelector(coordinates_new);
 	};
 	const changeColumnNameValue = (event) => {
 		setColumnName(event.target.value);
@@ -76,64 +87,91 @@ export const Column = ({
 			event.target.blur();
 			setIsSaved(true);
 
-			let db_new = { ...allBoards };
-			db_new.boards[selectedBoard.id].columns[indexColumn].name = columnName;
-			setAllBoards(db_new);
+			if (columnName) {
+				setAllBoards((draft) => {
+					draft.boards[allBoards.boards.indexOf(selectedBoard)].columns[indexColumn].name = columnName;
+				});
+			} else {
+				setColumnName('[Колонка без имени]');
+				setAllBoards((draft) => {
+					draft.boards[allBoards.boards.indexOf(selectedBoard)].columns[indexColumn].name =
+						'[Колонка без имени]';
+				});
+			}
+		}
+	};
+	const handleDragStart = (event) => {
+		if (event.target.className === 'allColumns__column') {
+			setDraggedColumn(column);
+		}
+	};
+	const handleDragEnd = (event) => {
+		setDraggedColumn(null);
+		if (event.target.className === 'allColumns__column') {
+			setDraggedColumn(null);
 		}
 	};
 
 	return (
-		<section className="allColumns__column">
-			<div className="column__title">
-				<div className={`column__circle column__circle--${column.color}`} onClick={showColorSelector} />
-				<div className="column__titleText_container">
-					<div className="column__titleText_countCards">{`(${column.cards.length}) :`}&nbsp;</div>
-					<div className="column__titleText_input_container">
-						<input
-							className={'column__titleText_input' + (!isSaved ? ' inputWasEdited' : '')}
-							value={columnName}
-							onChange={changeColumnNameValue}
-							onKeyUp={changeColumnName}
-						></input>
-					</div>
-				</div>
-				{openedColorSelector[0] && openedColorSelector[1] === indexColumn && (
-					<ColorSelector
-						allBoards={allBoards}
-						setAllBoards={setAllBoards}
-						indexColumn={indexColumn}
-						selectedBoard={selectedBoard}
-						coordinatesColorSelector={coordinatesColorSelector}
-						setOpenedColorSelector={setOpenedColorSelector}
-					/>
-				)}
-			</div>
-			<div
-				className={
-					'column__cards' +
-					(draggedOverColumn && column.id === draggedOverColumn.id ? ' column__cards_dragOver' : '')
-				}
-				onDrop={dropCard}
-				onDragOver={dragOverColumn}
-				onDragLeave={dragLeaveColumn}
+		<>
+			<section
+				className="allColumns__column"
+				draggable="true"
+				onDragStart={handleDragStart}
+				onDragEnd={handleDragEnd}
 			>
-				{listCards.map((item, index) => (
-					<Card
-						key={selectedBoard.columns[indexColumn].cards[index].id}
-						indexColumn={indexColumn}
-						allBoards={allBoards}
-						setAllBoards={setAllBoards}
-						selectedBoard={selectedBoard}
-						indexCard={index}
-						draggedCard={draggedCard}
-						setDraggedCard={setDraggedCard}
-						draggedFromColumn={draggedFromColumn}
-						setDraggedFromColumn={setDraggedFromColumn}
-						openedCard={openedCard}
-						setOpenedCard={setOpenedCard}
-					/>
-				))}
-			</div>
-		</section>
+				<div className="column__title">
+					<div className={`column__circle column__circle--${column.color}`} onClick={showColorSelector} />
+					<div className="column__titleText_container">
+						<div className="column__titleText_countCards">{`(${column.cards.length}) :`}&nbsp;</div>
+						<div className="column__titleText_input_container">
+							<input
+								className={cn('column__titleText_input', { inputWasEdited: !isSaved })}
+								value={columnName}
+								onChange={changeColumnNameValue}
+								onKeyUp={changeColumnName}
+							></input>
+						</div>
+					</div>
+					{openedColorSelector.isOpened && openedColorSelector.columnIndex === indexColumn && (
+						<ColorSelector
+							key={selectedBoard.columns[indexColumn].id}
+							allBoards={allBoards}
+							setAllBoards={setAllBoards}
+							indexColumn={indexColumn}
+							selectedBoard={selectedBoard}
+							coordinatesColorSelector={coordinatesColorSelector}
+							setOpenedColorSelector={setOpenedColorSelector}
+						/>
+					)}
+				</div>
+
+				<div
+					className={cn('column__cards', {
+						column__cards_dragOver: draggedOverColumn && column.id === draggedOverColumn.id,
+					})}
+					onDrop={dropCard}
+					onDragOver={dragOverColumn}
+					onDragLeave={dragLeaveColumn}
+				>
+					{listCards.map((item, index) => (
+						<Card
+							key={selectedBoard.columns[indexColumn].cards[index].id}
+							indexColumn={indexColumn}
+							allBoards={allBoards}
+							setAllBoards={setAllBoards}
+							selectedBoard={selectedBoard}
+							indexCard={index}
+							draggedCard={draggedCard}
+							setDraggedCard={setDraggedCard}
+							draggedFromColumn={draggedFromColumn}
+							setDraggedFromColumn={setDraggedFromColumn}
+							openedCard={openedCard}
+							setOpenedCard={setOpenedCard}
+						/>
+					))}
+				</div>
+			</section>
+		</>
 	);
 };

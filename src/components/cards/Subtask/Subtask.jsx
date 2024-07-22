@@ -1,4 +1,6 @@
-import { useState } from 'react';
+/* eslint-disable react/prop-types */
+import cn from 'classnames';
+import React, { useState } from 'react';
 import { DeleteSubtask } from '../DeleteSubtask';
 
 export const Subtask = ({
@@ -29,23 +31,35 @@ export const Subtask = ({
 			event.target.blur();
 			setIsSaved(true);
 
-			let db_new = { ...allBoards };
-			db_new.boards[selectedBoard.id].columns[indexColumn].cards[indexCard].subtasks[indexSubtask].name =
-				subtaskName;
-			setAllBoards(db_new);
+			if (subtaskName) {
+				setAllBoards((draft) => {
+					draft.boards[allBoards.boards.indexOf(selectedBoard)].columns[indexColumn].cards[
+						indexCard
+					].subtasks[indexSubtask].name = subtaskName;
+				});
+			} else {
+				setSubtaskName('[Подзадача без имени]');
+
+				setAllBoards((draft) => {
+					draft.boards[allBoards.boards.indexOf(selectedBoard)].columns[indexColumn].cards[
+						indexCard
+					].subtasks[indexSubtask].name = '[Подзадача без имени]';
+				});
+			}
 		}
 	};
 	const changeSubtaskStatus = (event) => {
 		setSubtaskStatus(event.target.checked);
 
-		let db_new = { ...allBoards };
-		db_new.boards[selectedBoard.id].columns[indexColumn].cards[indexCard].subtasks[indexSubtask].finished =
-			event.target.checked;
-		setAllBoards(db_new);
+		setAllBoards((draft) => {
+			draft.boards[allBoards.boards.indexOf(selectedBoard)].columns[indexColumn].cards[indexCard].subtasks[
+				indexSubtask
+			].finished = event.target.checked;
+		});
 	};
 	return (
 		<>
-			<div className={'subtask_' + (openedCard === card ? 'long' : 'short')}>
+			<div className={'subtask_' + (openedCard === card.id ? 'long' : 'short')}>
 				<input
 					className="subtask__checkbox"
 					type="checkbox"
@@ -54,7 +68,7 @@ export const Subtask = ({
 				></input>
 				<input
 					type="text"
-					className={'subtask__text' + (!isSaved ? ' inputWasEdited' : '')}
+					className={cn('subtask__text', { inputWasEdited: !isSaved })}
 					value={subtaskName}
 					onChange={changeSubtaskNameValue}
 					onKeyUp={changeSubtaskName}

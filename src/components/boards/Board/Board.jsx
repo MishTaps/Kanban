@@ -1,8 +1,12 @@
+/* eslint-disable react/prop-types */
+import cn from 'classnames';
+import React from 'react';
+
 export const Board = ({
 	indexBoard,
 	selectedBoard,
 	allBoards,
-	setSelectedBoard,
+	setSelectedBoardIndex,
 	setTitleText,
 	setOpenedColorSelector,
 	setOpenedCard,
@@ -18,13 +22,14 @@ export const Board = ({
 		});
 		selectedBoard = allBoards.boards[newBoard.id];
 		setTitleText(board.name);
-		setSelectedBoard(newBoard);
-		setOpenedColorSelector([false, null]);
+		setSelectedBoardIndex(indexBoard);
+		setOpenedColorSelector({ isOpened: false, columnIndex: null });
 		setOpenedCard(null);
 	};
+
 	return (
 		<div
-			className={'list__board' + (board.id === selectedBoard.id ? ' list__board_selected' : '')}
+			className={cn('list__board', { list__board_selected: board.id === selectedBoard.id })}
 			onClick={selectBoard}
 		>
 			{board.name}

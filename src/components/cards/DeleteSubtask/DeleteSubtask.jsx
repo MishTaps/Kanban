@@ -1,9 +1,13 @@
+/* eslint-disable react/prop-types */
+import React from 'react';
+
 export const DeleteSubtask = ({ allBoards, selectedBoard, indexColumn, indexCard, indexSubtask, setAllBoards }) => {
 	const deleteSubtask = () => {
-		let db_new = { ...allBoards };
-		db_new.boards[selectedBoard.id].columns[indexColumn].cards[indexCard].subtasks.splice(indexSubtask, 1);
+		const indexBoard = allBoards.boards.indexOf(selectedBoard);
 
-		setAllBoards(db_new);
+		setAllBoards((draft) => {
+			draft.boards[indexBoard].columns[indexColumn].cards[indexCard].subtasks.splice(indexSubtask, 1);
+		});
 	};
 
 	return (

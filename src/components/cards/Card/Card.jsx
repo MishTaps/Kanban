@@ -1,6 +1,7 @@
-import { useState } from 'react';
+/* eslint-disable react/prop-types */
+import cn from 'classnames';
+import React, { useState } from 'react';
 import { AddNewSubtask } from '../AddNewSubtask';
-import { DeleteCard } from '../DeleteCard';
 import { Subtask } from '../Subtask';
 
 export const Card = ({
@@ -27,10 +28,10 @@ export const Card = ({
 
 	let subtasksData;
 	const listSubtasks = Array(card.subtasks.length).fill();
-	if (openedCard === card) {
+	if (openedCard === card.id) {
 		subtasksData = listSubtasks.map((item, index) => (
 			<Subtask
-				key={index}
+				key={selectedBoard.columns[indexColumn].cards[indexCard].subtasks[index].id}
 				card={card}
 				openedCard={openedCard}
 				indexSubtask={index}
@@ -47,12 +48,16 @@ export const Card = ({
 		subtasksData = `${countDoneSubtasks} из ${card.subtasks.length} подзадач`;
 	}
 
-	const startDraggingCard = (event) => {
+	const startDraggingCard = () => {
 		setDraggedCard(card);
 		setDraggedFromColumn(selectedBoard.columns[indexColumn]);
 	};
+	const stopDraggingCard = () => {
+		setDraggedCard(null);
+		setDraggedFromColumn(null);
+	};
 	const openCard = () => {
-		setOpenedCard(card);
+		setOpenedCard(card.id);
 	};
 	const changeCardNameValue = (event) => {
 		setCardName(event.target.value);
@@ -67,19 +72,34 @@ export const Card = ({
 			event.target.blur();
 			setIsSaved(true);
 
-			let db_new = { ...allBoards };
-			db_new.boards[selectedBoard.id].columns[indexColumn].cards[indexCard].name = event.target.value;
-			setAllBoards(db_new);
+			if (cardName) {
+				setAllBoards((draft) => {
+					draft.boards[allBoards.boards.indexOf(selectedBoard)].columns[indexColumn].cards[indexCard].name =
+						cardName;
+				});
+			} else {
+				setCardName('[Задача без имени]');
+				setAllBoards((draft) => {
+					draft.boards[allBoards.boards.indexOf(selectedBoard)].columns[indexColumn].cards[indexCard].name =
+						'[Задача без имени]';
+				});
+			}
 		}
 	};
 
 	return (
 		<>
-			<article className="card" draggable="true" onDragStart={startDraggingCard} onClick={openCard}>
+			<article
+				className="card"
+				draggable="true"
+				onDragStart={startDraggingCard}
+				onClick={openCard}
+				onDragEnd={stopDraggingCard}
+			>
 				<div className="card__title_container">
 					<input
 						type="text"
-						className={'card__title' + (!isSaved ? ' inputWasEdited' : '')}
+						className={cn('card__title', { inputWasEdited: !isSaved })}
 						value={cardName}
 						onChange={changeCardNameValue}
 						onKeyUp={changeCardName}
@@ -88,22 +108,13 @@ export const Card = ({
 				<div className="card__subtasks">
 					{subtasksData}
 					<div className="card__footer">
-						{openedCard === card && (
+						{openedCard === card.id && (
 							<AddNewSubtask
 								allBoards={allBoards}
 								setAllBoards={setAllBoards}
 								selectedBoard={selectedBoard}
 								indexColumn={indexColumn}
 								indexCard={indexCard}
-							/>
-						)}
-						{openedCard === card && (
-							<DeleteCard
-								allBoards={allBoards}
-								selectedBoard={selectedBoard}
-								indexColumn={indexColumn}
-								indexCard={indexCard}
-								setAllBoards={setAllBoards}
 							/>
 						)}
 					</div>

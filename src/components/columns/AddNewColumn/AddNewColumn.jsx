@@ -1,27 +1,29 @@
-export const AddNewColumn = ({ allBoards, selectedBoard, setAllBoards }) => {
-	const addNewColumn = () => {
-		// Так неправильно делать. Потом переделаю
-		// Начало
-		const min = Math.ceil(0);
-		const max = Math.floor(1000000);
-		const newID = Math.floor(Math.random() * (max - min) + min);
-		// Конец
+/* eslint-disable react/prop-types */
+import cn from 'classnames';
+import React from 'react';
+import { require } from 'uuid';
 
+export const AddNewColumn = ({ allBoards, selectedBoard, setAllBoards, draggedCard, draggedColumn }) => {
+	const addNewColumn = () => {
+		const { v4: uuidv4 } = require('uuid');
 		const newColumn = {
 			name: 'Новая',
-			id: newID,
+			id: uuidv4(),
 			color: 'light-blue',
 			cards: [],
 		};
-		let db_new = { ...allBoards };
-		db_new.boards[db_new.boards.indexOf(selectedBoard)].columns.push(newColumn);
 
-		setAllBoards(db_new);
+		setAllBoards((draft) => {
+			draft.boards[allBoards.boards.indexOf(selectedBoard)].columns.push(newColumn);
+		});
 	};
 
 	return (
 		<>
-			<section className="allColumns__addNewColumn_container" onClick={addNewColumn}>
+			<section
+				className={cn('allColumns__addNewColumn_container', { 'display-none': draggedCard || draggedColumn })}
+				onClick={addNewColumn}
+			>
 				<div className="allColumns__addNewColumn">+ Новая колонка</div>
 			</section>
 		</>

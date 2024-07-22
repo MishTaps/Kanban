@@ -1,4 +1,6 @@
-import { useState } from 'react';
+/* eslint-disable react/prop-types */
+import cn from 'classnames';
+import React, { useState } from 'react';
 
 export const TitleBoardName = ({ allBoards, selectedBoard, setAllBoards, titleText, setTitleText }) => {
 	const [isSaved, setIsSaved] = useState(true);
@@ -16,16 +18,23 @@ export const TitleBoardName = ({ allBoards, selectedBoard, setAllBoards, titleTe
 			event.target.blur();
 			setIsSaved(true);
 
-			let db_new = { ...allBoards };
-			db_new.boards[selectedBoard.id].name = titleText;
-			setAllBoards(db_new);
+			if (titleText) {
+				setAllBoards((draft) => {
+					draft.boards[allBoards.boards.indexOf(selectedBoard)].name = titleText;
+				});
+			} else {
+				setTitleText('[Доска без имени]');
+				setAllBoards((draft) => {
+					draft.boards[allBoards.boards.indexOf(selectedBoard)].name = '[Доска без имени]';
+				});
+			}
 		}
 	};
 
 	return (
 		<input
 			type="text"
-			className={'header__title' + (!isSaved ? ' inputWasEdited' : '')}
+			className={cn('header__title', { inputWasEdited: !isSaved })}
 			value={titleText}
 			onChange={changeTitleName}
 			onKeyUp={changeBoardName}
