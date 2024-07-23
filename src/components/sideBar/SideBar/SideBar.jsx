@@ -3,6 +3,7 @@ import cn from 'classnames';
 import React from 'react';
 import { AddNewBoard } from '../../boards/AddNewBoard';
 import { Board } from '../../boards/Board';
+import { ImportBoard } from '../../boards/importBoard/importBoard';
 import { HideSideBar } from '../HideSideBar';
 
 export const SideBar = ({
@@ -47,6 +48,7 @@ export const SideBar = ({
 							))}
 
 							<AddNewBoard setAllBoards={setAllBoards} />
+							<ImportBoard allBoards={allBoards} setAllBoards={setAllBoards} />
 						</div>
 					</div>
 					<HideSideBar handleClick={handleClick} />

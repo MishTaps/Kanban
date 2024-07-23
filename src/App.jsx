@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useImmer } from 'use-immer';
 import { DeleteBoard } from './components/boards/DeleteBoard';
+import { SaveBoard } from './components/boards/SaveBoard';
 import { TitleBoardName } from './components/boards/TitleBoardName';
 import { AddNewCard } from './components/cards/AddNewCard';
 import { AddNewColumn } from './components/columns/AddNewColumn';
@@ -66,6 +67,7 @@ export const App = () => {
 							setSelectedBoardIndex={setSelectedBoardIndex}
 							setTitleText={setTitleText}
 						/>
+						<SaveBoard selectedBoard={selectedBoard} />
 						<AddNewCard allBoards={allBoards} selectedBoard={selectedBoard} setAllBoards={setAllBoards} />
 					</header>
 					<div className="workWindow__allColumns">

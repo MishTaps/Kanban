@@ -164,6 +164,22 @@ $--bg-delete-hover: rgb(203, 69, 69);
   text-overflow: ellipsis;
 }
 
+.saveBoardButton {
+  background-color: $--accent-color;
+  border: $--accent-color;
+  border-radius: 8px;
+  font-weight: bold;
+  color: white;
+  padding: 14px 24px;
+  margin: 0 14px 0 0;
+  text-align: center;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgb(114, 109, 198);
+  }
+}
+
 .addTaskButton {
   background-color: $--accent-color;
   border: $--accent-color;
