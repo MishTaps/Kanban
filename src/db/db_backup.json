@@ -1,0 +1,230 @@
+{
+  "boards": [
+    {
+      "name": "Доска №1",
+      "id": 0,
+      "columns": [
+        {
+          "name": "Сделать",
+          "id": 0,
+          "color": "blue",
+          "cards": [
+            {
+              "name": "Заголовок задачи №1",
+              "id": 0,
+              "subtasks": [
+                {
+                  "name": "Подзадача №1",
+                  "id": 0,
+                  "finished": false
+                },
+                {
+                  "name": "Подзадача №2",
+                  "id": 1,
+                  "finished": true
+                },
+                {
+                  "name": "Подзадача №3",
+                  "id": 2,
+                  "finished": false
+                }
+              ]
+            },
+            {
+              "name": "Заголовок задачи №2",
+              "id": 1,
+              "subtasks": [
+                {
+                  "name": "Подзадача №1",
+                  "id": 0,
+                  "finished": false
+                }
+              ]
+            },
+            {
+              "name": "Заголовок задачи №3",
+              "id": 0,
+              "subtasks": [
+                {
+                  "name": "Подзадача №1",
+                  "id": 0,
+                  "finished": true
+                },
+                {
+                  "name": "Подзадача №2",
+                  "id": 1,
+                  "finished": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "В работе",
+          "id": 1,
+          "color": "purple",
+          "cards": [
+            {
+              "name": "Заголовок задачи №4",
+              "id": 3,
+              "subtasks": []
+            },
+            {
+              "name": "Заголовок задачи №5",
+              "id": 4,
+              "subtasks": [
+                {
+                  "name": "Подзадача №1",
+                  "id": 0,
+                  "finished": false
+                },
+                {
+                  "name": "Подзадача №2",
+                  "id": 1,
+                  "finished": false
+                },
+                {
+                  "name": "Подзадача №3",
+                  "id": 2,
+                  "finished": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Готово",
+          "id": 2,
+          "color": "green",
+          "cards": [
+            {
+              "name": "Заголовок задачи №6",
+              "id": 5,
+              "subtasks": [
+                {
+                  "name": "Подзадача №1",
+                  "id": 0,
+                  "finished": true
+                },
+                {
+                  "name": "Подзадача №2",
+                  "id": 1,
+                  "finished": true
+                },
+                {
+                  "name": "Подзадача №3",
+                  "id": 2,
+                  "finished": true
+                }
+              ]
+            },
+            {
+              "name": "Заголовок задачи №7",
+              "id": 6,
+              "subtasks": [
+                {
+                  "name": "Подзадача №1",
+                  "id": 0,
+                  "finished": true
+                }
+              ]
+            },
+            {
+              "name": "Заголовок задачи №8",
+              "id": 7,
+              "subtasks": [
+                {
+                  "name": "Подзадача №1",
+                  "id": 0,
+                  "finished": false
+                },
+                {
+                  "name": "Подзадача №2",
+                  "id": 1,
+                  "finished": false
+                }
+              ]
+            },
+            {
+              "name": "Заголовок задачи №9",
+              "id": 8,
+              "subtasks": [
+                {
+                  "name": "Подзадача №1",
+                  "id": 0,
+                  "finished": false
+                },
+                {
+                  "name": "Подзадача №2",
+                  "id": 1,
+                  "finished": true
+                },
+                {
+                  "name": "Подзадача №3",
+                  "id": 2,
+                  "finished": false
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Доска №2",
+      "id": 1,
+      "columns": [
+        {
+          "name": "Сделать",
+          "id": 0,
+          "color": "blue",
+          "cards": []
+        },
+        {
+          "name": "Готово",
+          "id": 2,
+          "color": "green",
+          "cards": [
+            {
+              "name": "Заголовок задачи №6",
+              "id": 5,
+              "subtasks": [
+                {
+                  "name": "Подзадача №1",
+                  "id": 0,
+                  "finished": true
+                },
+                {
+                  "name": "Подзадача №2",
+                  "id": 1,
+                  "finished": true
+                },
+                {
+                  "name": "Подзадача №3",
+                  "id": 2,
+                  "finished": true
+                }
+              ]
+            },
+            {
+              "name": "Заголовок задачи №7",
+              "id": 6,
+              "subtasks": [
+                {
+                  "name": "Подзадача №1",
+                  "id": 0,
+                  "finished": true
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Доска №3",
+      "id": 2,
+      "columns": []
+    }
+  ]
+}
