@@ -43,11 +43,10 @@ export const Column = ({
 	const dropCard = (event) => {
 		event.preventDefault();
 
+		const indexBoard = allBoards.boards.indexOf(selectedBoard);
 		let cardIndex = null;
 		let cardIndexCount = 0;
-		allBoards.boards[allBoards.boards.indexOf(selectedBoard)].columns[
-			selectedBoard.columns.indexOf(draggedFromColumn)
-		].cards.forEach((card) => {
+		allBoards.boards[indexBoard].columns[selectedBoard.columns.indexOf(draggedFromColumn)].cards.forEach((card) => {
 			if (card.id === draggedCard.id) {
 				cardIndex = cardIndexCount;
 			}
@@ -55,11 +54,9 @@ export const Column = ({
 		});
 
 		setAllBoards((draft) => {
-			draft.boards[allBoards.boards.indexOf(selectedBoard)].columns[indexColumn].cards.push(draggedCard);
-
-			draft.boards[allBoards.boards.indexOf(selectedBoard)].columns[
-				selectedBoard.columns.indexOf(draggedFromColumn)
-			].cards.splice(cardIndex, 1);
+			draft.boards[indexBoard].columns[indexColumn].cards.push(draggedCard);
+			const draggedColumnIndex = selectedBoard.columns.indexOf(draggedFromColumn);
+			draft.boards[indexBoard].columns[draggedColumnIndex].cards.splice(cardIndex, 1);
 		});
 		setDraggedOverColumn(null);
 		setDraggedCard(null);
@@ -86,16 +83,16 @@ export const Column = ({
 		if (event.code === 'Enter') {
 			event.target.blur();
 			setIsSaved(true);
+			const indexBoard = allBoards.boards.indexOf(selectedBoard);
 
 			if (columnName) {
 				setAllBoards((draft) => {
-					draft.boards[allBoards.boards.indexOf(selectedBoard)].columns[indexColumn].name = columnName;
+					draft.boards[indexBoard].columns[indexColumn].name = columnName;
 				});
 			} else {
 				setColumnName('[Колонка без имени]');
 				setAllBoards((draft) => {
-					draft.boards[allBoards.boards.indexOf(selectedBoard)].columns[indexColumn].name =
-						'[Колонка без имени]';
+					draft.boards[indexBoard].columns[indexColumn].name = '[Колонка без имени]';
 				});
 			}
 		}

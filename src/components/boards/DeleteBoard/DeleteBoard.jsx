@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import { require } from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 
 export const DeleteBoard = ({ allBoards, setAllBoards, selectedBoard, setSelectedBoardIndex, setTitleText }) => {
 	const handleClick = () => {
@@ -8,7 +8,6 @@ export const DeleteBoard = ({ allBoards, setAllBoards, selectedBoard, setSelecte
 
 		setAllBoards((draft) => {
 			draft.boards.splice(indexBoard, 1);
-			const { v4: uuidv4 } = require('uuid');
 
 			if (!draft.boards[0]) {
 				const newBoard = {

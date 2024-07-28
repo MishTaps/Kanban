@@ -1,20 +1,20 @@
 /* eslint-disable react/prop-types */
 import cn from 'classnames';
 import React from 'react';
-import { require } from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 
 export const AddNewColumn = ({ allBoards, selectedBoard, setAllBoards, draggedCard, draggedColumn }) => {
 	const addNewColumn = () => {
-		const { v4: uuidv4 } = require('uuid');
 		const newColumn = {
 			name: 'Новая',
 			id: uuidv4(),
 			color: 'light-blue',
 			cards: [],
 		};
+		const indexBoard = allBoards.boards.indexOf(selectedBoard);
 
 		setAllBoards((draft) => {
-			draft.boards[allBoards.boards.indexOf(selectedBoard)].columns.push(newColumn);
+			draft.boards[indexBoard].columns.push(newColumn);
 		});
 	};
 

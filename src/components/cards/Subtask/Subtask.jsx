@@ -30,31 +30,29 @@ export const Subtask = ({
 		if (event.code === 'Enter') {
 			event.target.blur();
 			setIsSaved(true);
+			const indexBoard = allBoards.boards.indexOf(selectedBoard);
 
 			if (subtaskName) {
 				setAllBoards((draft) => {
-					draft.boards[allBoards.boards.indexOf(selectedBoard)].columns[indexColumn].cards[
-						indexCard
-					].subtasks[indexSubtask].name = subtaskName;
+					draft.boards[indexBoard].columns[indexColumn].cards[indexCard].subtasks[indexSubtask].name =
+						subtaskName;
 				});
 			} else {
 				setSubtaskName('[Подзадача без имени]');
 
 				setAllBoards((draft) => {
-					draft.boards[allBoards.boards.indexOf(selectedBoard)].columns[indexColumn].cards[
-						indexCard
-					].subtasks[indexSubtask].name = '[Подзадача без имени]';
+					draft.boards[indexBoard].columns[indexColumn].cards[indexCard].subtasks[indexSubtask].name =
+						'[Подзадача без имени]';
 				});
 			}
 		}
 	};
 	const changeSubtaskStatus = (event) => {
 		setSubtaskStatus(event.target.checked);
-
+		const indexBoard = allBoards.boards.indexOf(selectedBoard);
 		setAllBoards((draft) => {
-			draft.boards[allBoards.boards.indexOf(selectedBoard)].columns[indexColumn].cards[indexCard].subtasks[
-				indexSubtask
-			].finished = event.target.checked;
+			draft.boards[indexBoard].columns[indexColumn].cards[indexCard].subtasks[indexSubtask].finished =
+				event.target.checked;
 		});
 	};
 	return (

@@ -1,12 +1,11 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useRef } from 'react';
 
 export const ImportBoard = ({ allBoards, setAllBoards }) => {
-	// const inputButton = '<input className="list__addNewBoard" type="file"></input>';
+	const inputRef = useRef(null);
 
 	const handleClick = () => {
-		const inputButton = document.querySelector('.list__addNewBoard_input');
-		inputButton.click();
+		inputRef.current.click();
 	};
 
 	const handleChange = (e) => {
@@ -42,9 +41,8 @@ export const ImportBoard = ({ allBoards, setAllBoards }) => {
 				});
 				if (isStructureError) {
 					return false;
-				} else {
-					return true;
 				}
+				return true;
 			};
 
 			let isStructureAlright = true;
@@ -101,6 +99,7 @@ export const ImportBoard = ({ allBoards, setAllBoards }) => {
 		<>
 			<input
 				className="list__addNewBoard_input"
+				ref={inputRef}
 				type="file"
 				accept=".json"
 				hidden

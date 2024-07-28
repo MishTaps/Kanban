@@ -71,17 +71,16 @@ export const Card = ({
 		if (event.code === 'Enter') {
 			event.target.blur();
 			setIsSaved(true);
+			const indexBoard = allBoards.boards.indexOf(selectedBoard);
 
 			if (cardName) {
 				setAllBoards((draft) => {
-					draft.boards[allBoards.boards.indexOf(selectedBoard)].columns[indexColumn].cards[indexCard].name =
-						cardName;
+					draft.boards[indexBoard].columns[indexColumn].cards[indexCard].name = cardName;
 				});
 			} else {
 				setCardName('[Задача без имени]');
 				setAllBoards((draft) => {
-					draft.boards[allBoards.boards.indexOf(selectedBoard)].columns[indexColumn].cards[indexCard].name =
-						'[Задача без имени]';
+					draft.boards[indexBoard].columns[indexColumn].cards[indexCard].name = '[Задача без имени]';
 				});
 			}
 		}

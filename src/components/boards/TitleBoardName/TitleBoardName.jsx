@@ -17,15 +17,16 @@ export const TitleBoardName = ({ allBoards, selectedBoard, setAllBoards, titleTe
 		if (event.code === 'Enter') {
 			event.target.blur();
 			setIsSaved(true);
+			const indexBoard = allBoards.boards.indexOf(selectedBoard);
 
 			if (titleText) {
 				setAllBoards((draft) => {
-					draft.boards[allBoards.boards.indexOf(selectedBoard)].name = titleText;
+					draft.boards[indexBoard].name = titleText;
 				});
 			} else {
 				setTitleText('[Доска без имени]');
 				setAllBoards((draft) => {
-					draft.boards[allBoards.boards.indexOf(selectedBoard)].name = '[Доска без имени]';
+					draft.boards[indexBoard].name = '[Доска без имени]';
 				});
 			}
 		}
