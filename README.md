@@ -1,5 +1,8 @@
 # Kanban доска
 
+Просмотр примера Kanban-доски:
+https://66b06f803cf2b477d6b520e8--aquamarine-donut-5207b8.netlify.app/
+
 Разделы readme.md:
 
 -   Работа с досками
